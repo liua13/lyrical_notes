@@ -8,7 +8,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js --exec babel-node -e js"
+    "start": "node server.js"
   },
   "author": "Annie Liu",
   "license": "MIT",
