@@ -1,8 +1,8 @@
-import express from "express";
-import path from "path";
-import bodyparser from "body-parser";
-import request from "request";
-import cors from "cors";
+const express = require("express");
+const path = require("path");
+const bodyparser = require("body-parser");
+const request = require("request");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 8888;
 const app = express();
