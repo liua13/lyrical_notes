@@ -1,0 +1,30 @@
+{
+  "name": "lyricalnotes",
+  "version": "1.0.0",
+  "description": "A guessing game from listening to just the first 30 seconds of a song",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liua13/lyrical_notes"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js --exec babel-node -e js"
+  },
+  "author": "Annie Liu",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
