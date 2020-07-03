@@ -1,0 +1,12 @@
+audio {
+  margin: 40px 0;
+}
+
+.guessDisplay {
+  margin: 10px 0;
+}
+
+.giveup-button {
+  padding: 0px 10px;
+  border-radius: 10px;
+}

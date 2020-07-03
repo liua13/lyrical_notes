@@ -1,0 +1,14 @@
+*:focus {
+  outline: none;
+}
+
+.genre-container {
+  padding: 25px 0;
+}
+
+.genre-buttons {
+  font-size: 20px;
+  width: 200px;
+  height: 100px;
+  border-radius: 20px;
+}

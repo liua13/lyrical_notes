@@ -1,0 +1,20 @@
+.gamestats-container {
+  margin: 0 auto 40px auto;
+  text-align: center;
+  width: 300px;
+}
+
+.gamestats-container p {
+  display: flex;
+  margin: 0;
+  padding: 2px 0;
+}
+
+.gamestats-container span {
+  width: 300px;
+  text-align: right;
+}
+.gamestats-container span:last-of-type {
+  text-align: left;
+  margin-left: 5px;
+}
