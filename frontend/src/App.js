@@ -1,6 +1,5 @@
 import React from "react";
 import Helmet from "react-helmet";
-import Timer from "./Components/Timer";
 import Start from "./Components/Start/";
 import Game from "./Components/Game/";
 import End from "./Components/End/";
@@ -16,7 +15,7 @@ class App extends React.Component {
     gameCount: 0, // how many song tracks have been played
     correctGuesses: 0, // how many times user has guessed correctly
     incorrectGuesses: 0, // how many times user has guessed incorrectly
-    giveupCount: 0,
+    giveupCount: 0, // how many times the user has given up
     correct: null, // is user's current guess correct
     backgroundColor: { backgroundColor: "#9370DB" }, // background color of page
     totalTime: 0, // total amount of time user spent playing game
@@ -139,8 +138,10 @@ class App extends React.Component {
   };
 
   updateTotalTime = (time) => {
-    this.setState({
-      totalTime: time,
+    this.setState((prevState) => {
+      return {
+        totalTime: prevState.totalTime + time,
+      };
     });
   };
 
@@ -174,10 +175,6 @@ class App extends React.Component {
     } else if (this.state.currentTrack) {
       display = (
         <div>
-          <Timer
-            updateTotalTime={this.updateTotalTime}
-            convertToTimeDisplay={this.convertToTimeDisplay}
-          />
           <Game
             currentTrack={this.state.currentTrack}
             genre={this.state.genre}
@@ -185,11 +182,14 @@ class App extends React.Component {
             totalGameCount={this.state.totalGameCount}
             correct={this.state.correct}
             backgroundColor={this.state.backgroundColor}
+            totalTime={this.totalTime}
             updateCurrentTrack={this.updateCurrentTrack}
             resetStates={this.resetStates}
             increaseGameCount={this.increaseGameCount}
             increaseGiveupCount={this.increaseGiveupCount}
             updateUserGuess={this.updateUserGuess}
+            updateTotalTime={this.updateTotalTime}
+            convertToTimeDisplay={this.convertToTimeDisplay}
           />
         </div>
       );

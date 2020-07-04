@@ -1,4 +1,5 @@
 import React from "react";
+import Timer from "./Timer";
 import TrackInfo from "./TrackInfo";
 import "./index.css";
 
@@ -64,13 +65,19 @@ class Game extends React.Component {
 
     return (
       <div className="container" style={this.props.backgroundColor}>
+        {!this.props.correct && !this.state.giveup && (
+          <Timer
+            updateTotalTime={this.props.updateTotalTime}
+            convertToTimeDisplay={this.props.convertToTimeDisplay}
+            giveup={this.state.giveup}
+            correct={this.props.correct}
+          />
+        )}
         <h1>{this.props.genre}</h1>
         <p>
           {this.props.gameCount + 1} / {this.props.totalGameCount}
         </p>
-        <audio controls>
-          <source src={this.props.currentTrack.preview_url} type="audio/mpeg" />
-        </audio>
+        <audio src={this.props.currentTrack.preview_url} controls />
 
         {!this.props.correct && !this.state.giveup && (
           <div>
