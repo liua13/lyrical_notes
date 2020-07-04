@@ -26,6 +26,7 @@ class Start extends React.Component {
     return (
       <div>
         <h1>select a genre</h1>
+        <p>and guess the song from listening to a 30 second preview</p>
         <div className="genre-container">
           {genres.genres.map((genre, i) => (
             <button
