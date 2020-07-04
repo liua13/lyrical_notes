@@ -217,8 +217,9 @@ class App extends React.Component {
         <div className="App" style={this.state.backgroundColor}>
           {display}
           <footer>
-            Made with &hearts; by{" "}
-            <a href="https://github.com/liua13/lyrical_notes">Annie Liu</a>
+            made with &hearts; by <a href="http://annieliu.me/">annie liu</a>{" "}
+            &#8226;{" "}
+            <a href="https://github.com/liua13/lyrical_notes">source code</a>
           </footer>
         </div>
       </div>
