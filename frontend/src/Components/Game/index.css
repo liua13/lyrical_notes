@@ -10,3 +10,8 @@ audio {
   padding: 0px 10px;
   border-radius: 10px;
 }
+
+img {
+  display: block;
+  margin: 10px auto;
+}

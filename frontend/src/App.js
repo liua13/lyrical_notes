@@ -41,6 +41,7 @@ class App extends React.Component {
         this.setState({
           totalGameCount: this.state.gameCount,
         });
+        return;
       }
 
       let randomKey = (keys.length * Math.random()) << 0;
@@ -52,6 +53,13 @@ class App extends React.Component {
         keys = Object.keys(prevTracks);
         randomKey = (keys.length * Math.random()) << 0;
         randomTrack = prevTracks[keys[randomKey]];
+      }
+
+      if (keys.length == 0) {
+        this.setState({
+          totalGameCount: this.state.gameCount,
+        });
+        return;
       }
 
       // makes sure track titles don't contain extra characters

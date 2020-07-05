@@ -25,6 +25,7 @@ const TrackInfo = (props) => {
           {props.currentTrack.album.name}
         </a>
       </p>
+      <img src={props.currentTrack.album.images[1].url} />
       <button onClick={props.changeCurrentTrack}>NEXT</button>
     </div>
   );
