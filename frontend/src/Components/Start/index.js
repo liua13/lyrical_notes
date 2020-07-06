@@ -1,25 +1,13 @@
 import React from "react";
-import axios from "axios";
 import genres from "../../data/genres.json";
 import "./index.css";
 
 class Start extends React.Component {
-  getTracks = (e) => {
+  getGenre = (e) => {
     e.preventDefault();
     let self = this;
     let genre = e.target.value;
-
-    // gets track by genre
-    axios
-      .post("/api/getTrackByGenre", {
-        genre,
-      })
-      .then(function (response) {
-        self.props.updateGenreAndTracks(genre, response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    this.props.updateGenre(genre);
   };
 
   render() {
@@ -33,7 +21,7 @@ class Start extends React.Component {
               className="genre-buttons"
               key={i}
               value={genre}
-              onClick={this.getTracks}
+              onClick={this.getGenre}
             >
               {genre}
             </button>

@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Helmet from "react-helmet";
 import Start from "./Components/Start/";
 import Game from "./Components/Game/";
@@ -11,7 +12,7 @@ class App extends React.Component {
     genre: null, // genre user selected
     tracks: {}, // all remaining tracks that can be played
     currentTrack: null, // current track shown to user
-    totalGameCount: 5, // how many total songs to play for the whole game
+    totalGameCount: 10, // how many total songs to play for the whole game
     gameCount: 0, // how many song tracks have been played
     correctGuesses: 0, // how many times user has guessed correctly
     incorrectGuesses: 0, // how many times user has guessed incorrectly
@@ -21,14 +22,26 @@ class App extends React.Component {
     totalTime: 0, // total amount of time user spent playing game
   };
 
-  updateGenreAndTracks = (genre, tracks) => {
-    this.setState((prevState) => {
-      return {
+  updateGenre = (genre) => {
+    // gets track by genre
+    const self = this;
+    axios
+      .post("/api/getTrackByGenre", {
         genre,
-        tracks,
-      };
-    });
-    this.updateCurrentTrack();
+      })
+      .then(function (response) {
+        console.log(genre);
+        self.setState((prevState) => {
+          return {
+            genre,
+            tracks: response.data,
+          };
+        });
+        self.updateCurrentTrack();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   updateCurrentTrack = () => {
@@ -38,9 +51,7 @@ class App extends React.Component {
       if (keys.length == 0 && this.state.gameCount == 1) {
         return;
       } else if (keys.length == 0) {
-        this.setState({
-          totalGameCount: this.state.gameCount,
-        });
+        this.updateGenre(this.state.genre);
         return;
       }
 
@@ -56,9 +67,7 @@ class App extends React.Component {
       }
 
       if (keys.length == 0) {
-        this.setState({
-          totalGameCount: this.state.gameCount,
-        });
+        this.updateGenre(this.state.genre);
         return;
       }
 
@@ -202,7 +211,7 @@ class App extends React.Component {
         </div>
       );
     } else {
-      display = <Start updateGenreAndTracks={this.updateGenreAndTracks} />;
+      display = <Start updateGenre={this.updateGenre} />;
     }
     return (
       <div>
