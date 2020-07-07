@@ -47,7 +47,7 @@ app.post("/api/getTrackByGenre", (req, res) => {
     if (!error && response.statusCode === 200) {
       // generate random number for offset [0, 1950] and limit [15, 20]
       let { genre } = req.body;
-      let randomOffset = Math.floor(Math.random() * 1950);
+      let randomOffset = Math.floor(Math.random() * 1000);
       let randomLimit = Math.floor(Math.random() * 16) + 10;
 
       // console.log("offset: ", randomOffset);
