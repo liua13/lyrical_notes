@@ -1,22 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { timers } from "jquery";
 
-const Timer = (props) => {
-  const [startTime, setStartTime] = useState(null);
-  const [displayTime, setDisplayTime] = useState("00:00:00.00");
+class Timer extends React.Component {
+  state = {
+    startTime: null,
+    displayTime: "00:00:00.00",
+  };
 
-  useEffect(() => {
-    const time = new Date().getTime();
-    setStartTime(time);
-    const interval = setInterval(() => {
-      const duration = new Date().getTime() - startTime;
-      const display = props.convertToTimeDisplay(duration);
-      setDisplayTime(display);
+  componentDidMount() {
+    const startTime = new Date().getTime();
+    this.timeInterval = setInterval(() => {
+      const duration = new Date().getTime() - this.state.startTime;
+      const displayTime = this.props.convertToTimeDisplay(duration);
+      this.setState({
+        displayTime,
+      });
     }, 1);
+    this.setState({ startTime });
+  }
 
-    return () => clearInterval(interval);
-  });
+  componentWillUnmount() {
+    this.props.updateTotalTime(new Date().getTime() - this.state.startTime);
+    clearInterval(this.timeInterval);
+  }
 
-  return <div>{displayTime}</div>;
-};
+  render() {
+    return <div>{this.state.displayTime}</div>;
+  }
+}
 
 export default Timer;
